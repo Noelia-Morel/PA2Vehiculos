@@ -4,7 +4,7 @@
         <div class="well">
             <form id="formNuevoCliente" class="form-horizontal">
                 <fieldset>
-                    <legend>Crear Producto</legend>
+                    <legend>Crear Cliente</legend>
                     <div class="form-group">
                         <asp:Label ID="lblNombre" runat="server" Text="Nombre" CssClass="control-label"></asp:Label>
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>

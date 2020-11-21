@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Negocio;
+using Negocio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,17 +14,36 @@ namespace VehiculosWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
-            { 
-            
+            {
             }
         }
 
         protected void btnGrabar_Click(object sender, EventArgs e)
         {
+            int idNuevo = 0;
             if (Page.IsValid)
-            { 
-                
+            {
+                ItemCliente itemCliente = new ItemCliente()
+                {
+                    DNI = long.Parse(txtDNI.Text),
+                    Apellido = txtApellido.Text,
+                    Nombre = txtNombre.Text
+                };
+
+                idNuevo = ServicioCliente.AgregarCliente(itemCliente);
             }
+
+            if (idNuevo > 0)
+            {
+                BlanquearCampos();
+            }
+        }
+
+        private void BlanquearCampos()
+        {
+            txtApellido.Text = string.Empty;
+            txtDNI.Text = string.Empty;
+            txtNombre.Text = string.Empty;
         }
     }
 }
