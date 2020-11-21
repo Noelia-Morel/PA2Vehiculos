@@ -22,11 +22,10 @@ namespace Datos
                     Nombre = clienteDTO.Nombre
                 };
 
-                using (contexto = new Contexto())
-                {
-                    contexto.Clientes.Add(cliente);
-                    contexto.SaveChanges();
-                }
+                contexto = new Contexto();
+                contexto.Clientes.Add(cliente);
+                contexto.SaveChanges();
+
 
                 return cliente.Id;
             }
@@ -61,7 +60,7 @@ namespace Datos
             {
                 using (contexto = new Contexto())
                 {
-                   var cliente = contexto.Clientes.Find(id);
+                    var cliente = contexto.Clientes.Find(id);
                     contexto.Clientes.Remove(cliente);
                     contexto.SaveChanges();
                 }
