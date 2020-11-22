@@ -37,7 +37,7 @@ namespace Negocio
                 List<ItemCliente> itemClienteList = new List<ItemCliente>();
                 List<ClienteDTO> clienteDTOlist = new List<ClienteDTO>();
 
-                if (string.IsNullOrEmpty(texto))
+                if (!string.IsNullOrEmpty(texto))
                 {
                     clienteDTOlist = clienteDAL.BuscarClientes(texto);
                 }
@@ -60,10 +60,8 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-
         }
 
     }
