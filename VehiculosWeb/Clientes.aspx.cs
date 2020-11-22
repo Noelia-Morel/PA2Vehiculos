@@ -11,10 +11,12 @@ namespace VehiculosWeb
 {
     public partial class Clientes : System.Web.UI.Page
     {
+        string texto;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+
             }
         }
 
@@ -44,6 +46,16 @@ namespace VehiculosWeb
             txtApellido.Text = string.Empty;
             txtDNI.Text = string.Empty;
             txtNombre.Text = string.Empty;
+        }
+
+        private void ActualizarGrilla()
+        {
+            gvClientes.DataSource = ServicioCliente.Consultar(texto);
+        }
+
+        protected void gvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Clientes.aspx.cs" Inherits="VehiculosWeb.Clientes" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-<div class="content condensed">
+    <div class="content condensed">
+        <div class="jumbotron">
+            <h2>Administración de Clientes</h2>           
+        </div>
+
         <div class="well">
             <form id="formNuevoCliente" class="form-horizontal">
                 <fieldset>
@@ -55,13 +60,12 @@
         </div>
         <div class="well">
 
-<%--            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="EntityDataSource1">
+            <asp:GridView ID="gvClientes" runat="server" AllowPaging="True" AllowSorting="True" OnRowCommand="gvClientes_RowCommand">
                 <Columns>
-                    <asp:CommandField ShowSelectButton="True" />
+                    <asp:CommandField ShowSelectButton="True" ButtonType="Button" />
                 </Columns>
-            </asp:GridView>--%>
-
-
+            </asp:GridView>
         </div>
     </div>
+
 </asp:Content>
