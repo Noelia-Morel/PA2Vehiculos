@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="ClientesDAL.cs" />
     <Compile Include="Entidades\ClienteDTO.cs" />
+    <Compile Include="Entidades\VehiculoDTO.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,6 +78,7 @@
     <Compile Include="Vehiculos.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="VehiculosDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Model.edmx">
