@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Datos.Entidades
+namespace Negocio.Entidades
 {
-    public class VehiculoDTO
+    public class ItemVehiculo
     {
         public int Id { get; set; }
         public string Marca { get; set; }

@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\ItemCliente.cs" />
+    <Compile Include="Entidades\ItemVehiculo.cs" />
     <Compile Include="ServicioCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicioVehiculo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

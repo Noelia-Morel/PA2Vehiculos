@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Datos
 {
@@ -11,7 +9,7 @@ namespace Datos
     {
         Contexto contexto;
 
-        public int Agregar(VehiculoDTO vehiculoDTO )
+        public int Agregar(VehiculoDTO vehiculoDTO)
         {
             try
             {
@@ -89,6 +87,94 @@ namespace Datos
             }
         }
 
+        public List<VehiculoDTO> ObtenerVehiculos()
+        {
+            List<Vehiculos> listaVehiculos = new List<Vehiculos>();
 
+            try
+            {
+                using (contexto = new Contexto())
+                {
+                    listaVehiculos = contexto.Vehiculos.ToList();
+                }
+
+                return ConvertirAListaDTO(listaVehiculos);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public List<VehiculoDTO> ConsultarVehiculos(string texto)
+        {
+            List<Vehiculos> listaVehiculos = new List<Vehiculos>();
+            try
+            {
+                using (contexto = new Contexto())
+                {
+                    listaVehiculos = contexto.Vehiculos // con exp lambda busco en dos campos de la tabla el texto
+                                    .Where(datos => contexto.Vehiculos.Any(x => datos.Marca.Contains(texto)) ||
+                                    contexto.Vehiculos.Any(x => datos.Modelo.Contains(texto))).ToList();
+                }
+
+                return ConvertirAListaDTO(listaVehiculos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public VehiculoDTO ConsultarVehiculo(int id)
+        {
+            Vehiculos vehiculo; 
+
+            try
+            {
+                using (contexto = new Contexto())
+                {
+                    vehiculo = contexto.Vehiculos.Find(id);
+                }
+
+                return ConvertirADTO(vehiculo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private static List<VehiculoDTO> ConvertirAListaDTO(List<Vehiculos> listaVehiculos)
+        {
+            List<VehiculoDTO> listavehiculoDTO = new List<VehiculoDTO>();
+
+            foreach (var vehiculo in listaVehiculos)
+            {
+                VehiculoDTO vehiculoDTO = ConvertirADTO(vehiculo);
+
+                listavehiculoDTO.Add(vehiculoDTO);
+            }
+            return listavehiculoDTO;
+        }
+
+        private static VehiculoDTO ConvertirADTO(Vehiculos vehiculo)
+        {
+            return new VehiculoDTO()
+            {
+                AnioFabricacion = vehiculo.AnioFabricacion,
+                ClienteId = vehiculo.ClienteId.Value,
+                Dominio = vehiculo.Dominio,
+                FechaIngreso = vehiculo.FechaIngreso,
+                FechaVenta = vehiculo.FechaVenta,
+                Id = vehiculo.Id,
+                Marca = vehiculo.Marca,
+                Modelo = vehiculo.Modelo,
+                NroMotor = vehiculo.NroMotor,
+                PrecioVenta = vehiculo.PrecioVenta,
+                ValuacionIngreso = vehiculo.ValuacionIngreso
+            };
+        }
     }
 }
